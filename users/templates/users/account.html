@@ -1,0 +1,10 @@
+{% extends 'users/main.html' %}
+{% block content %}
+<h1>Informações Da Conta</h1>
+        <p><b>Nome Completo: </b><td>{{user.get_nome}}</td>
+        <p><b>Data de Nascimento: </b><td>{{user.get_nascimento}}</td>
+        <p><b>Idade: </b><td>{{user.get_idade}}</td>
+        <p><b>CPF: </b><td>{{user.get_cpf}}</td>
+        <p><b>Quantidade de Cursos Ministrados: </b><td>{{user.get_quant_cursos}}</td>
+        <p><a href="{% url 'home' %}">Ver Os Seus Cursos</a></p>
+{% endblock %}

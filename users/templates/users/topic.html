@@ -1,0 +1,8 @@
+{% extends 'users/main.html' %}
+{% block content %}
+<h1>Informações Do Tópico De Aula</h1>
+        <p><b>Título: </b><td>{{topic.titulo}}</td>
+        <p><b>Descrição: </b><td>{{topic.descricao}}</td>
+        <p><a href="{% url 'topic_delete' topic.id topic.get_id_curso %}">Deletar Este Tópico?</a></p>
+        <p><a href="{% url 'course' topic.get_id_curso %}">Ver O Curso</a></p>
+{% endblock %}

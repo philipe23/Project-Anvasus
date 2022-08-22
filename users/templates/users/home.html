@@ -1,0 +1,23 @@
+<!doctype HTML>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+    </head>
+    <body>
+        {% extends 'users/main.html' %}
+        {% block content %}
+            {% if request.user.is_authenticated %}
+            <h1>Esses São Os Seus Cursos</h1>
+                {% for curso in user.get_cursos %}
+                <p><a href="{% url 'course' curso.id %}">{{curso}}</a><br>
+                    <b>Status: </b>{{ curso.status }}
+                </p>
+                {% endfor %}
+                <p><a href="{% url 'course_register' user.get_id %}">Submeter Novo Plano</a></p>
+            {% else %}
+                <h1>Bem Vindo A Plataforma, Escolha Uma Opção</h1>
+            {% endif %}
+        {% endblock %}
+    </body>
+</html>

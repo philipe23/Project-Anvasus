@@ -1,0 +1,17 @@
+{% extends 'users/main.html' %}
+{% block content %}
+{% if curso.get_quant_topicos < 5 %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        {% for field in form %}
+            <p>
+                {{field.label_tag}}
+                {{field}}
+        {% endfor %}
+    <br><br><input type="submit" name="Submit">
+    </form>
+{% else %}
+    <p>Esse curso já têm 5 tópicos. Apague um e tente novamente</p>
+    <p><a href="{% url 'course' curso.id %}">Voltar</a></p>
+{% endif %}
+{% endblock %}

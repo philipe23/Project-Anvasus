@@ -1,0 +1,9 @@
+{% extends 'users/main.html' %}
+{% block content %}
+    {% if request.user.is_authenticated %}
+        <h1>Você foi registrado com sucesso!</h1>
+        <p><a href="{% url 'home' %}">Ir para a plataforma</a></p>
+    {% else %}
+        <h1>Bem Vindo A Plataforma, Escolha Uma Opção</h1>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+{% extends 'users/main.html' %}
+{% block content %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Página De Registro</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {% for field in registration_form %}
+                <p>
+                    {{field.label_tag}}
+                    {{field}}
+                    {% if field.help_text %}
+                        <small style="color: grey;">{{field.help_text}}</small>
+                    {% endif %}
+                    {% for error in field.errors %}
+                        <p style="color: red;">{{error}}</p>
+                    {% endfor %}
+            {% endfor %}
+            <br>
+            <br>
+            <button type="submit">Salvar</button>
+        </form>
+</body>
+</html>
+{% endblock %}
+

@@ -1,0 +1,9 @@
+{% extends 'users/main.html' %}
+{% block content %}
+    <p>Você quer mesmo deletar "{{topic.titulo}}"?</p>
+    <form action="{% url 'topic_delete' topic.id curso.id%}" method="POST">
+        <p><a href="{% url 'course' curso.id %}">Não</a> </p>
+        {% csrf_token %}
+        <input type="submit" name="Sim">
+    </form>
+{% endblock %}

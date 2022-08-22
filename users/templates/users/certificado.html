@@ -1,0 +1,18 @@
+{% extends 'users/main.html' %}
+{% block content %}
+{% if user.get_id == course.get_id_professor %}
+    <h2>Detalhes Do Professor</h2>
+    <p>Nome: {{user.get_nome}}</p>
+    <p>CPF: {{user.get_cpf}}</p>
+    <h2>Detalhes Do Curso</h2>
+    <p>Título: {{course.titulo}}</p>
+    <p>Área Temática: {{course.tema}}</p>
+    <p>Carga Horária (em horas): {{course.duracao}}</p>
+    <p>Você quer mesmo gerar um certificado para "{{course.titulo}}"?</p>
+    <P><a href="{% url 'pdf' user.get_id course.id %}">Sim</a></P>
+    <P><a href="{% url 'course' course.id %}">Não</a></P>
+{% else %}
+    <p>Este curso não é seu. Volte para a página inicial</p>
+    <p><a href="{% url 'home' %}"></a></p>
+{% endif %}
+{% endblock %}

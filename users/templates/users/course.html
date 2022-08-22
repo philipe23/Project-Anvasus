@@ -1,0 +1,39 @@
+{% extends 'users/main.html' %}
+{% block content %}
+{% if user.get_id == course.get_id_professor %}
+        {% if course.status == 'Aprovado' %}
+                <h1>Informações Do Curso</h1>
+                        <p><b>Título: </b><td>{{course.titulo}}</td>
+                        <p><b>Tema: </b><td>{{course.tema}}</td>
+                        <p><b>Carga Horária: </b><td>{{course.duracao}}</td>
+                        <p><b>Status: </b><td>{{course.status}}</td>
+                        <p><b>Objetivo Geral: </b><td>{{course.objetivo}}</td>
+                        <p><b>Forma De Avaliação: </b><td>{{course.avaliacao}}</td>
+                        <p><b>Ementa: </b><td>{{course.ementa}}</td>
+                        <p><b>Data De Criação: </b><td>{{course.criado}}</td>
+                        <p><b>Tópicos de Aula: </b>
+                        {% for topic in topics %}
+                                <a href="{% url 'topic' topic.id %}">{{topic.titulo}}</a><br>
+                        {% endfor %}
+                        <p><a href="{% url 'topic_register' course.id %}">Cadastrar Tópico De Aula</a> </p>
+                        <p><a href="{% url 'course_update' course.id %}">Atualizar Curso</a></p>
+                        <p><a href="{% url 'certificado' user.get_id course.id %}">Gerar Certificado</a></p>
+        {% elif course.status == 'Pendente' %}
+                <h1>Informações Do Curso</h1>
+                        <p><b>Título: </b><td>{{course.titulo}}</td>
+                        <p><b>Carga Horária: </b><td>{{course.duracao}}</td>
+                        <p><b>Status: </b><td>{{course.status}}</td>
+                        <p><b>Objetivo Geral: </b><td>{{course.objetivo}}</td>
+                        <p><b>Forma De Avaliação: </b><td>{{course.avaliacao}}</td>
+                        <p><b>Ementa: </b><td>{{course.ementa}}</td>
+                        <p><b>Data De Criação: </b><td>{{course.criado}}</td>
+                        <p><b>Tópicos de Aula: Esperando Aprovação</b>
+        {% else %}
+                <p>Esse Curso Foi Recusado</p>
+                <p><a href="{% url 'course_delete' course.id %}">Deletar Curso</a></p>
+        {% endif %}
+{% else %}
+        <p>Este curso não é seu. Volte para a página inicial</p>
+        <P><a href="{% url 'home' %}"></a></P>
+{% endif %}
+{% endblock %}
